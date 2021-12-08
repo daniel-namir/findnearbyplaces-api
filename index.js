@@ -11,6 +11,11 @@ const api = require('./api');
 const application = express();
 const port = process.env.PORT || 4002;
 
+application.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
 passport.use(new LocalStrategy(
     { usernameField: 'email'},
     (email, password, done) => {
